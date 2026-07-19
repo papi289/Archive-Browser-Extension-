@@ -1,0 +1,51 @@
+{
+  "manifest_version": 3,
+  "name": "Archive Browser",
+  "version": "1.0.0",
+  "description": "Browse archive sites with Ruffle Flash 0.3.0 support and local link navigation",
+  "permissions": [
+    "tabs",
+    "scripting",
+    "activeTab",
+    "webRequest"
+  ],
+  "host_permissions": [
+    "*://*.archive.org/*",
+    "*://*.web.archive.org/*",
+    "*://*.archive.is/*",
+    "*://*.webcitation.org/*",
+    "http://*/*",
+    "https://*/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Archive Browser",
+    "default_icon": {
+      "16": "images/icon-16.png",
+      "48": "images/icon-48.png",
+      "128": "images/icon-128.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_start",
+      "all_frames": true
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["ruffle/ruffle.js", "injected.js"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "icons": {
+    "16": "images/icon-16.png",
+    "48": "images/icon-48.png",
+    "128": "images/icon-128.png"
+  }
+}
